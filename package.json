@@ -1,5 +1,5 @@
 {
-  "name": "node-milight",
+  "name": "node-milight-scheduler",
   "version": "0.0.0",
   "description": "",
   "main": "scheduler.js",
@@ -9,7 +9,7 @@
   "author": "Sam Hiatt <samhiatt@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/samhiatt/node-milight.git"
+    "url": "https://github.com/samhiatt/node-milight-scheduler.git"
   },
   "license": "ISC",
   "dependencies": {
