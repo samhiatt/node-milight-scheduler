@@ -60,9 +60,7 @@ function scheduleEvent(event){
 			this.stop();
 		},
 		onComplete: function () {
-			var nextEvent = getNextEvent();
-			console.log(new Date() + " - Scheduling next event:", nextEvent.event, nextEvent.time);
-			scheduleEvent(nextEvent);
+			scheduleEvent(getNextEvent());
 		},
 		start: true
 	});
