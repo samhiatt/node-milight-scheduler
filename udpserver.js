@@ -10,7 +10,11 @@ server.on("error", function (err) {
 });
 
 server.on("message", function (msg, rinfo) {
-	console.log("server got: " + msg + " from " +
+	var msgArr = [];
+	for (var i=0; i<msg.length; i++){
+		msgArr.push(msg[i]);
+	} 
+	console.log("server got: " + msgArr + " from " +
 	rinfo.address + ":" + rinfo.port);
 });
 
