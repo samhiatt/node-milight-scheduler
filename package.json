@@ -15,7 +15,7 @@
   "dependencies": {
     "cron": "^1.0.9",
     "forever": "^0.14.1",
-    "limitless-gem": "git://github.com/gembly/LimitlessGEM",
+    "node-milight": "git://github.com/samhiatt/node-milight",
     "suncalc": "^1.6.0"
   }
 }
