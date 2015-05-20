@@ -1,6 +1,6 @@
 /* Run this as a daemon with `node_modules/forever/bin/forever start scheduler.js`
 */
-
+var LightEvents = require('./lib/LightEvents');
 var SunCalc = require('suncalc');
 var CronJob = require('cron').CronJob;
 
@@ -56,7 +56,8 @@ function scheduleEvent(event){
 		cronTime: event.time,
 		onTick: function () {
 			console.log(event.time + " - Firing event for " + event.event);
-			// TODO: call light function for this event
+			var evtFunc = LightEvents[event.event]();
+			if (typeof evtFunc == 'function') evtFunc();
 			this.stop();
 		},
 		onComplete: function () {
@@ -67,9 +68,9 @@ function scheduleEvent(event){
 	console.log(new Date()+" - Scheduled",event.event,"for",event.time);
 }
 
-//scheduleEvent(getNextEvent());
+scheduleEvent(getNextEvent());
 
 // for testing, fire event foo for 1 second from now.
-var now = new Date();
-var then = new Date(new Date(now).setSeconds(now.getSeconds()+1));
-scheduleEvent({event:"foo",time:then});
+//var now = new Date();
+//var then = new Date(new Date(now).setSeconds(now.getSeconds()+1));
+//scheduleEvent({event:"nightEnd",time:then});
