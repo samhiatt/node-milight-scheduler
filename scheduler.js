@@ -36,7 +36,7 @@ function getTimes(time){
 	return timeArray;
 }
 
-function getNextEvent(){
+function getNextEvents(){
 	var times = getTimes();
 	var now = new Date();
 	var futureEvents = times.filter(function(t){
@@ -46,7 +46,7 @@ function getNextEvent(){
 		var tomorrow = new Date(new Date(now).setDate(now.getDate()+1));
 		futureEvents = getTimes(tomorrow);
 	}
-	return futureEvents[0];
+	return futureEvents;
 }
 
 function scheduleEvent(event){
@@ -61,14 +61,22 @@ function scheduleEvent(event){
 			this.stop();
 		},
 		onComplete: function () {
-			scheduleEvent(getNextEvent());
+			scheduleEvent(getNextEvents()[0]);
 		},
 		start: true
 	});
 	console.log(new Date()+" - Scheduled",event.event,"for",event.time);
 }
 
-scheduleEvent(getNextEvent());
+// Hacky way to make sure it set lights for the correct time
+var times = getTimes();
+var now = new Date();
+var lastEvent = times.filter(function(t){
+	return t.time<now;
+}).slice(-1)[0];
+var now = new Date();
+lastEvent.time = new Date(new Date(now).setSeconds(now.getSeconds()+1));
+scheduleEvent(lastEvent);
 
 // for testing, fire event foo for 1 second from now.
 //var now = new Date();
