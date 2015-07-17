@@ -56,7 +56,7 @@ function scheduleEvent(event){
 		cronTime: event.time,
 		onTick: function () {
 			console.log(event.time + " - Firing event for " + event.event);
-			var evtFunc = LightEvents[event.event]();
+			var evtFunc = LightEvents[event.event];
 			if (typeof evtFunc == 'function') evtFunc();
 			this.stop();
 		},
